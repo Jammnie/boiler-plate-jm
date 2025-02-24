@@ -7,7 +7,6 @@ const { User } = require('./models/User');
 const { auth } = require('./middlewares/auth');
 const cors = require('cors');
 
-const registerRouter = require('./routes/register');
 const apiRouter = require('./routes/api');
 
 const app = express();
