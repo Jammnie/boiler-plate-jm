@@ -2,18 +2,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const { User } = require('./models/User');
 const config = require('./config/key');
+const { User } = require('./models/User');
 const { auth } = require('./middlewares/auth');
-
-const app = express();
-const port = 3000;
+const cors = require('cors');
 
 const registerRouter = require('./routes/register');
+const apiRouter = require('./routes/api');
+
+const app = express();
+const port = 5000;
+
+
 
 app.use(bodyParser.urlencoded({extended: true}) );
 app.use(bodyParser.json());
-
+app.use(cors());
 // mongoDB 연결결
 // mongodb://root:dlwoals12%23A@localhost:27017/?authSource=admin
 mongoose.connect(config.mongoURI,{
@@ -21,10 +25,12 @@ mongoose.connect(config.mongoURI,{
   .catch(err => console.error(err)
 );
 app.use(cookieParser());
+
 app.get('/', (req, res) => res.send('hello worlds!!'));
-app.use('/register', registerRouter);
+app.use('/api', apiRouter);
+
 // login
-app.use('/users/login', (req, res) => {
+app.use('/api/users/login', (req, res) => {
   // 요청된 이메일이 데이터베이스에 있는지 확인한다.
   // 이메일이 있다면 비밀번호가 맞는지 확인한다.
   // 비밀번호까지 맞다면 토큰을 생성하기.
@@ -71,7 +77,7 @@ app.use('/users/login', (req, res) => {
 })
 
 // auth
-app.post('/users/auth', auth, (req, res) => {
+app.post('/api/users/auth', auth, (req, res) => {
   console.log('req.user is ', req.user);
   res.status(200), json({
     _id: req.body._id,
@@ -83,7 +89,7 @@ app.post('/users/auth', auth, (req, res) => {
 })
 
 //logout
-app.get('/users/logout', auth, async (req, res) => {
+app.get('/api/users/logout', auth, async (req, res) => {
   console.log(User);
   try{
     await User.findOneAndUpdate({_id: req.user._id}, {token: ""});
@@ -92,6 +98,8 @@ app.get('/users/logout', auth, async (req, res) => {
     res.json({ logoutSuccess: false, err });
   }
 });
+
+
 
 app.listen(port, () => {
   console.log(port, 'port is waiting...');
