@@ -75,7 +75,8 @@ userSchema.methods.comparePassword = function(plainPassword, cb) {
 userSchema.methods.generateToken = async function(cb) {
   console.log('gen token');
   var user = this;
-  const token = jwt.sign(user._id.toHexString(), process.env.secretToken);
+  // process.env.secretToken
+  const token = jwt.sign(user._id.toHexString(), 'secret' );
   console.log(user._id);
   user.token = token;
   try{
@@ -92,7 +93,8 @@ userSchema.statics.findByToken = function(token, cb) {
   console.log('find user by token');
   var user = this;
   
-  jwt.verify(token, process.env.secretToken, async function(err, decoded) {
+  // process.env.secretToken
+  jwt.verify(token,  'secret', async function(err, decoded) {
     try{
       console.log('user is ', user);
       const query = User.where({"_id":decoded, "token": token});

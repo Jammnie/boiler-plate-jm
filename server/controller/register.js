@@ -5,7 +5,7 @@ const saltRounds = 10;
 
 exports.registerUser = async(req, res, next) => {
   // const {password} = req.body;
-  // console.log('register controller / user password is ', password);
+  // console.log('register controller / user generateToken is ', password);
   // const hashPassword = await bcrypt.hash(password, saltRounds);
   // console.log('hash password is', hashPassword);
   // let user = new User(req.body);

@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router,
   Routes,
@@ -22,6 +22,9 @@ function App() {
           </li>
           <li>
             <Link to="/dashboard">DashBoard</Link>
+          </li>
+          <li>
+            <Link to="/loginpage">LoginPage</Link>
           </li>
           <li>
             <Link to="/landingpage">LandingPage</Link>
