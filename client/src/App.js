@@ -18,16 +18,16 @@ function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">DashBoard</Link>
+            <Link to="/landingpage">LandingPage</Link>
           </li>
           <li>
             <Link to="/loginpage">LoginPage</Link>
           </li>
           <li>
-            <Link to="/landingpage">LandingPage</Link>
+            <Link to="/registerpage">RegisterPage</Link>
+          </li>
+          <li>
+            
           </li>
         </ul>
 
@@ -35,8 +35,6 @@ function App() {
 
         <Routes >
           <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />}/>
-          <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/landingpage' element={<LandingPage />} />
           <Route path='/loginpage' element={<LoginPage />} />
           <Route path='/registerpage' element={<RegisterPage />} />

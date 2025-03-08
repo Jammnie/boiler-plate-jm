@@ -22,8 +22,12 @@ mongoose.connect(config.mongoURI,{
 );
 app.use(cookieParser());
 
-app.get('/', (req, res) => res.send('hello worlds!!'));
+app.get('/', (req, res, next) => {
+  // res.send('hello worlds!!');
+  next();
+});
 app.use('/api', apiRouter);
+
 
 app.listen(port, () => {
   console.log(port, 'port is waiting...');

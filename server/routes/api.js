@@ -9,12 +9,12 @@ const { registerUser } = require('../controller/register');
 
 const { auth } = require('../middlewares/auth');
 
-router.get('/helloworld', (req, res)=>{
+router.get('/hello', (req, res)=>{
   console.log('good')
-  res.status(200).send('안녕하세요. Hello world');
+  res.status(200).send('안녕하세요. Hello world555666');
 });
 
-router.post('/register', registerUser);
+router.post('/users/register', registerUser);
 
 router.post('/users/login', (req, res) => {
   // 요청된 이메일이 데이터베이스에 있는지 확인한다.
