@@ -8,6 +8,7 @@ import {BrowserRouter as Router,
 import LandingPage from './components/views/LandingPage/LandingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
+import Auth from './hoc/auth';
 
 function App() {
   return (
@@ -35,9 +36,9 @@ function App() {
 
         <Routes >
           <Route path='/' element={<Home />} />
-          <Route path='/landingpage' element={<LandingPage />} />
-          <Route path='/loginpage' element={<LoginPage />} />
-          <Route path='/registerpage' element={<RegisterPage />} />
+          <Route path='/landingpage' Component={Auth(LandingPage, null)} />
+          <Route path='/loginpage' Component={Auth(LoginPage, false)} />
+          <Route path='/registerpage' Component={Auth(RegisterPage, false)} />
         </Routes >
       </div>
     </Router>

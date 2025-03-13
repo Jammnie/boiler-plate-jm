@@ -64,13 +64,13 @@ router.post('/users/login', (req, res) => {
 
 router.post('/users/auth', auth, (req, res) => {
   console.log('req.user is ', req.user);
-  res.status(200), json({
+  res.status(200).json({
     _id: req.body._id,
     isAdmin: req.body.role === 0 ? false: true,
     isAuth: true,
     email: req.body.email,
     name: req.body.name,
-  })
+  });
 });
 
 router.get('/users/logout', auth, async (req, res) => {
